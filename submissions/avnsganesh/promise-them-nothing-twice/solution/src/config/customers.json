@@ -1,0 +1,37 @@
+{
+  "_comment": "Per-customer config records. Same schema for every customer. burst=null means the customer is capped at sustainedRpm at all times. Fake IDs only.",
+  "defaults": {
+    "sustainedRpm": 60,
+    "burst": null
+  },
+  "customers": {
+    "acme": {
+      "name": "Acme Co",
+      "tier": "growth-demo-100",
+      "sustainedRpm": 100,
+      "burst": null
+    },
+    "globex": {
+      "name": "Globex",
+      "tier": "growth-demo-100",
+      "sustainedRpm": 100,
+      "burst": null
+    },
+    "initech": {
+      "name": "Initech",
+      "tier": "growth-demo-100",
+      "sustainedRpm": 100,
+      "burst": null
+    },
+    "northwind": {
+      "name": "Northwind Logistics",
+      "tier": "enterprise",
+      "sustainedRpm": 300,
+      "burst": {
+        "ceilingRpm": 1200,
+        "windowUtc": { "start": "02:00", "end": "04:00" },
+        "reason": "Documented nightly batch window; served requests are tagged burst tier for audit"
+      }
+    }
+  }
+}
