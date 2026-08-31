@@ -3,3 +3,4 @@ coverage/
 *.log
 .env
 .DS_Store
+harness/last-report.json

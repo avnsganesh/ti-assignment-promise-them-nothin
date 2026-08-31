@@ -2,7 +2,7 @@
   "name": "relayapi-rate-limiter",
   "version": "0.1.0",
   "private": true,
-  "description": "RelayAPI per-customer rate-limited HTTP service — thin vertical slice (skeleton)",
+  "description": "RelayAPI per-customer rate-limited HTTP service — thin vertical slice",
   "type": "module",
   "engines": {
     "node": ">=20"
@@ -11,10 +11,13 @@
     "start": "node src/server.js",
     "cluster": "node scripts/cluster.js",
     "harness": "node harness/loadTest.js",
+    "redis:up": "docker compose up -d redis",
+    "redis:down": "docker compose down",
     "test": "node --test"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "ioredis": "^5.4.1"
   },
   "devDependencies": {}
 }

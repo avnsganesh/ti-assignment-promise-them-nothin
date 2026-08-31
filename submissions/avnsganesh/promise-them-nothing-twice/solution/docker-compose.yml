@@ -1,0 +1,23 @@
+# OPTIONAL — a containerised Redis for reviewers who already use Docker.
+# It is NOT the primary path. On Windows the README's recommended setup is
+# Memurai (a native Redis-compatible Windows service); on macOS/Linux a local
+# redis-server works too. Use this file only if you'd rather run Redis in Docker.
+#
+#   docker compose up -d redis      # start
+#   docker compose down             # stop + remove
+#
+# Ephemeral on purpose: persistence is disabled so every run starts from a
+# clean slate (buckets rebuild themselves on first request).
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: relayapi-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
